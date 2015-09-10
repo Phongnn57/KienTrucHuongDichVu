@@ -1,0 +1,16 @@
+
+platform :ios, '7.0'
+xcodeproj 'LibraryManager.xcodeproj'
+source 'https://github.com/CocoaPods/Specs.git'
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+# Manage third party library
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'MRProgress'
+pod 'Toast'
+pod 'SWRevealViewController'
+pod 'DZNEmptyDataSet'
+pod 'BSKeyboardControls'
