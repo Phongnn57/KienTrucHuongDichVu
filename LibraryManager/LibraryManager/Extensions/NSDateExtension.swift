@@ -15,8 +15,16 @@ public extension NSDate {
         let day = self.days
         let month = self.month
         let year = self.year
+        let hour = self.hours
+        let minute = self.minutes
+        let second = self.seconds
         
-        return "\(day)-\(month)-\(year)"
+        return "\(day)-\(month)-\(year) \(hour):\(minute):\(second)"
+    }
+    
+    func toSeconds() ->String {
+        let second = self.timeIntervalSince1970
+        return "\(second)"
     }
     
     // MARK:  NSDate Manipulation

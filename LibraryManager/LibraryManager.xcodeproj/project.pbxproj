@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		63EC427BDEAA9085E013E989 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFF8D23C099BC15EA931202 /* libPods.a */; };
+		A40425FA1BA2EA5D008FBADB /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40425F81BA2EA5D008FBADB /* BookCell.swift */; };
+		A40425FB1BA2EA5D008FBADB /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40425F91BA2EA5D008FBADB /* BookCell.xib */; };
+		A4ED0A1C1BA2ACE600D53CC1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED0A1B1BA2ACE600D53CC1 /* Utilities.swift */; };
 		A4EFB0211BA1300400F00D33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EFB0201BA1300400F00D33 /* AppDelegate.swift */; };
 		A4EFB0231BA1300400F00D33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EFB0221BA1300400F00D33 /* ViewController.swift */; };
 		A4EFB0261BA1300400F00D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4EFB0241BA1300400F00D33 /* Main.storyboard */; };
@@ -48,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		2A89D3390EAB2CE783471E51 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A40425F81BA2EA5D008FBADB /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		A40425F91BA2EA5D008FBADB /* BookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
+		A4ED0A1B1BA2ACE600D53CC1 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A4EFB01B1BA1300400F00D33 /* LibraryManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EFB01F1BA1300400F00D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4EFB0201BA1300400F00D33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,15 @@
 				FCFF8D23C099BC15EA931202 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A40425F71BA2EA4C008FBADB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A40425F81BA2EA5D008FBADB /* BookCell.swift */,
+				A40425F91BA2EA5D008FBADB /* BookCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		A4EFB0121BA1300400F00D33 = {
@@ -186,6 +201,7 @@
 		A4EFB0411BA1330200F00D33 /* Books View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A40425F71BA2EA4C008FBADB /* Cell */,
 				A4EFB0421BA1331000F00D33 /* BooksViewController.swift */,
 				A4EFB0431BA1331000F00D33 /* BooksViewController.xib */,
 			);
@@ -247,6 +263,7 @@
 		A4EFB05A1BA136F600F00D33 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A4ED0A1B1BA2ACE600D53CC1 /* Utilities.swift */,
 				A4EFB05D1BA139B000F00D33 /* ModelManager.swift */,
 				A4EFB05B1BA1370100F00D33 /* AppConstant.swift */,
 			);
@@ -365,6 +382,7 @@
 				A4EFB0451BA1331000F00D33 /* BooksViewController.xib in Resources */,
 				A4EFB04A1BA1333100F00D33 /* BookViewController.xib in Resources */,
 				A4EFB02B1BA1300400F00D33 /* LaunchScreen.xib in Resources */,
+				A40425FB1BA2EA5D008FBADB /* BookCell.xib in Resources */,
 				A4EFB0281BA1300400F00D33 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +437,7 @@
 				A4EFB06E1BA13A7B00F00D33 /* NSDateExtension.swift in Sources */,
 				A4EFB05C1BA1370100F00D33 /* AppConstant.swift in Sources */,
 				A4EFB0711BA13A7B00F00D33 /* UIColorExtension.swift in Sources */,
+				A40425FA1BA2EA5D008FBADB /* BookCell.swift in Sources */,
 				A4EFB0231BA1300400F00D33 /* ViewController.swift in Sources */,
 				A4EFB04E1BA1334A00F00D33 /* AddBookViewController.swift in Sources */,
 				A4EFB0731BA13A7B00F00D33 /* UITextFieldExtension.swift in Sources */,
@@ -434,6 +453,7 @@
 				A4EFB06F1BA13A7B00F00D33 /* StringExtension.swift in Sources */,
 				A4EFB0741BA13A7B00F00D33 /* UITextViewExtension.swift in Sources */,
 				A4EFB06D1BA13A7B00F00D33 /* ArrayExtension.swift in Sources */,
+				A4ED0A1C1BA2ACE600D53CC1 /* Utilities.swift in Sources */,
 				A4EFB0721BA13A7B00F00D33 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

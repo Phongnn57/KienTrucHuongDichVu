@@ -15,6 +15,7 @@ class BookObject {
     var book_publisher: String?
     var category: String?
     var book_photoURL: String?
+    var book_description: String?
     
     init() {
         self.book_id = 0
@@ -23,12 +24,14 @@ class BookObject {
         self.book_publisher = ""
         self.category = ""
         self.book_photoURL = ""
+        self.book_description = ""
     }
     
-    init(name: String!, author: String!, publisher: String, category: String) {
+    init(name: String!, author: String!, publisher: String, category: String, descriptions: String) {
         self.book_name = name
         self.book_author = author
         self.book_publisher = publisher
         self.category = category
+        self.book_description = descriptions
     }
 }

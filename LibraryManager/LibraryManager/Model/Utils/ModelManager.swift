@@ -82,7 +82,7 @@ class ModelManager: NSObject {
                 }
                 
                 let responseData: Dictionary = responseObject as! Dictionary<String, AnyObject>
-                println(responseData)
+//                println(responseData)
                 var message = ""
                 if(responseData["message"] != nil){
                     message = responseData["message"] as! String
