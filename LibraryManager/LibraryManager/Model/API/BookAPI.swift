@@ -21,7 +21,7 @@ class BookAPI: NSObject {
             if let data: Array<AnyObject> = responseData as? Array<AnyObject> {
                 var tmpArr: [BookObject] = []
                 for eachObj in data {
-                    var tmpBook = BookObject()
+                    let tmpBook = BookObject()
                     tmpBook.book_id = Utilities.numberFromJSONAnyObject(eachObj["id"])!.integerValue
                     tmpBook.book_name = eachObj["name"] as? String ?? ""
                     tmpBook.book_author = eachObj["author"] as? String ?? ""
@@ -72,7 +72,7 @@ class BookAPI: NSObject {
         ModelManager.shareManager.mainManager.POST(AppConstant.API.URLs.ApiUrl, parameters: nil, constructingBodyWithBlock: { (formData: AFMultipartFormData) -> Void in
             
             if image != nil {
-                let tmpName = NSDate().toSeconds() + ".jpg"
+                let tmpName = "\(NSDate().timeIntervalSince1970)" + ".jpg"
                 formData.appendPartWithFileData(Utilities.convertImageToData(image), name: "fileToUpload", fileName: tmpName, mimeType: "image/jpeg")
             }
             formData.appendPartWithFormData(AppConstant.API.KEYs.Add_Book.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: AppConstant.API.KEYs.Action)
@@ -89,14 +89,14 @@ class BookAPI: NSObject {
                 }
                 
                 let responseData: Dictionary = responseObject as! Dictionary<String, AnyObject>
-                println(responseData)
+                print(responseData)
                 var message = ""
                 if(responseData["message"] != nil){
                     message = responseData["message"] as! String
                 }
                 
                 if(responseData["status"] != nil && ((responseData["status"] as? Int) == 1 || (responseData["status"] as? String) == "1")){
-                    let contentData: AnyObject? = responseData["data"]
+//                    let contentData: AnyObject? = responseData["data"]
                     completion()
                     return
                 }
@@ -105,7 +105,7 @@ class BookAPI: NSObject {
                 failure(error: message)
                 
             }) { (operation: AFHTTPRequestOperation, error: NSError) -> Void in
-                print(error.description)
+                print(error.description, terminator: "")
                 if(error.code == 3840){
                     failure(error: "Lỗi 3840. Vui lòng gọi tổng đài để được hỗ trợ.")
                 }else{

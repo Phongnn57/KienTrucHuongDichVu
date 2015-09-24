@@ -92,7 +92,7 @@ class Utilities {
     class func scaleDownImageWith(image: UIImage, newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, true, 0.0)
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        var scaledImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let scaledImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return scaledImage
@@ -103,7 +103,7 @@ class Utilities {
         
         let ratio = image.size.width / 200
         img = Utilities.scaleDownImageWith(image, newSize: CGSizeMake(200, image.size.height/ratio))
-        var imageData = UIImageJPEGRepresentation(img, 0.8)
+        let imageData = UIImageJPEGRepresentation(img, 0.8)
         return imageData
     }
 }

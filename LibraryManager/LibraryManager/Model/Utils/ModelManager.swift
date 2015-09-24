@@ -31,7 +31,7 @@ class ModelManager: NSObject {
             
             
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                print(error.description)
+                print(error.description, terminator: "")
                 if(error.code == 3840){
                     failure(errorMessage: "Lỗi 3840. Vui lòng gọi tổng đài để được hỗ trợ.")
                 }else{
@@ -46,7 +46,7 @@ class ModelManager: NSObject {
         var mparams = params
         
         var formParams: Dictionary<String, NSData> = Dictionary<String, NSData>()
-        for key in mparams.keys.array {
+        for key in Array(mparams.keys) {
             if let dataAny: AnyObject = mparams[key]{
                 var data: NSData?
                 if(dataAny is String || dataAny is NSString){
@@ -61,7 +61,7 @@ class ModelManager: NSObject {
                 }else if(dataAny is Double){
                     data = String("\((dataAny as! Double))").dataUsingEncoding(NSUTF8StringEncoding)
                 }else {
-                    data = NSJSONSerialization.dataWithJSONObject(dataAny, options: nil, error: nil)
+                    data = try? NSJSONSerialization.dataWithJSONObject(dataAny, options: [])
                 }
                 
                 formParams[key] = data
@@ -70,7 +70,7 @@ class ModelManager: NSObject {
         
         //Start the request
         mainManager.POST(path, parameters: nil, constructingBodyWithBlock: { (formData: AFMultipartFormData!) -> Void in
-            for key in formParams.keys.array{
+            for key in Array(formParams.keys){
                 if let data = formParams[key as String]{
                     formData.appendPartWithFormData(data, name: key)
                 }
@@ -97,7 +97,7 @@ class ModelManager: NSObject {
                 message = message.isEmpty ? "Lỗi không xác định, vui lòng gọi tổng đài để được hỗ trợ." : message
                 failure(errorMessage: message)
             }) { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                print(error.description)
+                print(error.description, terminator: "")
                 if(error.code == 3840){
                     failure(errorMessage: "Lỗi 3840. Vui lòng gọi tổng đài để được hỗ trợ.")
                 }else{

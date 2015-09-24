@@ -47,7 +47,7 @@ extension UIView {
     }
     
     @IBInspectable var shadowColor: UIColor {
-        get { return UIColor(CGColor: self.layer.shadowColor ?? UIColor(red: 0, green: 0, blue: 0, alpha: 0).CGColor)! }
+        get { return UIColor(CGColor: self.layer.shadowColor ?? UIColor(red: 0, green: 0, blue: 0, alpha: 0).CGColor) }
         set (color) { self.layer.shadowColor = color.CGColor }
     }
     

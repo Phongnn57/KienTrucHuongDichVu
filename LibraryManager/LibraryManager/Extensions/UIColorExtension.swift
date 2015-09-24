@@ -25,7 +25,7 @@ extension UIColor {
         var alpha: CGFloat = 1.0
         
         if rgba.hasPrefix("#") {
-            let index   = advance(rgba.startIndex, 1)
+            let index   = rgba.startIndex.advancedBy(1)
             let hex     = rgba.substringFromIndex(index)
             let scanner = NSScanner(string: hex)
             var hexValue: CUnsignedLongLong = 0
@@ -50,16 +50,44 @@ extension UIColor {
                     blue  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
                     alpha = CGFloat(hexValue & 0x000000FF)         / 255.0
                 default:
-                    print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8", appendNewline: false)
+                    print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8", terminator: "")
                 }
             } else {
                 print("Scan hex error")
             }
         } else {
-            print("Invalid RGB string, missing '#' as prefix", appendNewline: false)
+            print("Invalid RGB string, missing '#' as prefix", terminator: "")
         }
         self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
+    
+    //
+    //    public convenience init?(rgba: String) {
+    //        let r, g, b, a: CGFloat
+    //
+    //        if rgba.hasPrefix("#") {
+    //            let start = rgba.startIndex.advancedBy(1)
+    //            let hexColor = rgba.substringFromIndex(start)
+    //
+    //            if hexColor.characters.count == 7 {
+    //                let scanner = NSScanner(string: hexColor)
+    //                var hexNumber: UInt64 = 0
+    //
+    //                if scanner.scanHexLongLong(&hexNumber) {
+    //                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+    //                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+    //                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+    //                    a = CGFloat(hexNumber & 0x000000ff) / 255
+    //
+    //                    self.init(red: r, green: g, blue: b, alpha: a)
+    //                    return
+    //                }
+    //            }
+    //        }
+    //
+    //        return nil
+    //    }
+    
     
     //MARK: Darker color for highlighted button
     
@@ -73,7 +101,7 @@ extension UIColor {
         }
         return c
     }
-
+    
     
     //MARK: cutomize gradient background
     func theGradientBackground(backgroundView: UIView, hexColor1: String, hexColor2:String) -> UIView {
@@ -87,15 +115,15 @@ extension UIColor {
         backgroundView.layer.insertSublayer(gradientLayer, atIndex: 0)
         return backgroundView
     }
-
+    
     func convertHexStringToColor (hexString: String) -> UIColor {
         var hexColorString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
         if hexColorString.hasPrefix("#") {
-            hexColorString = hexColorString.substringFromIndex(advance(hexColorString.startIndex, 1))
+            hexColorString = hexColorString.substringFromIndex(hexColorString.startIndex.advancedBy(1))
         }
         
-        if count(hexColorString) != 6 {
+        if hexColorString.characters.count != 6 {
             var error: NSError?
             NSException.raise("Hex Color String Error", format: "Error: Invalid hex color string. Please ensure hex color string has 6 elements", arguments: getVaList([error ?? "nil"]))
         }
@@ -116,5 +144,5 @@ extension UIColor {
             blue: CGFloat((hex & 0xFF))/255.0,
             alpha: alpha)
     }
-
+    
 }

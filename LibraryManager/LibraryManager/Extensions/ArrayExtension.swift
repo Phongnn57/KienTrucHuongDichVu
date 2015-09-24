@@ -13,8 +13,8 @@ internal extension Array {
     /**
     Checks if self contains a list of items.
     
-    :param: items Items to search for
-    :returns: true if self contains all the items
+    - parameter items: Items to search for
+    - returns: true if self contains all the items
     */
     func contains <T: Equatable> (items: T...) -> Bool {
         return items.all { self.indexOf($0) >= 0 }
@@ -25,8 +25,8 @@ internal extension Array {
     /**
     Checks if test returns true for all the elements in self
     
-    :param: test Function to call for each element
-    :returns: True if test returns true for all the elements in self
+    - parameter test: Function to call for each element
+    - returns: True if test returns true for all the elements in self
     */
     func all (test: (Element) -> Bool) -> Bool {
         for item in self {
@@ -41,12 +41,12 @@ internal extension Array {
     /**
     Index of the first occurrence of item, if found.
     
-    :param: item The item to search for
-    :returns: Index of the matched item or nil
+    - parameter item: The item to search for
+    - returns: Index of the matched item or nil
     */
     func indexOf <U: Equatable> (item: U) -> Int? {
         if item is Element {
-            return Swift.find(unsafeBitCast(self, [U].self), item)
+            return unsafeBitCast(self, [U].self).indexOf(item)
         }
         
         return nil
@@ -55,11 +55,11 @@ internal extension Array {
     /**
     Index of the first item that meets the condition.
     
-    :param: condition A function which returns a boolean if an element satisfies a given condition or not.
-    :returns: Index of the first matched item or nil
+    - parameter condition: A function which returns a boolean if an element satisfies a given condition or not.
+    - returns: Index of the first matched item or nil
     */
     func indexOf (condition: Element -> Bool) -> Int? {
-        for (index, element) in enumerate(self) {
+        for (index, element) in self.enumerate() {
             if condition(element) {
                 return index
             }
@@ -71,26 +71,26 @@ internal extension Array {
     /**
     First element of the array.
     
-    :returns: First element of the array if not empty
+    - returns: First element of the array if not empty
     */
-    @availability(*, unavailable, message="use the 'first' property instead") func first () -> Element? {
+    @available(*, unavailable, message="use the 'first' property instead") func first () -> Element? {
         return first
     }
     
     /**
     Last element of the array.
     
-    :returns: Last element of the array if not empty
+    - returns: Last element of the array if not empty
     */
-    @availability(*, unavailable, message="use the 'last' property instead") func last () -> Element? {
+    @available(*, unavailable, message="use the 'last' property instead") func last () -> Element? {
         return last
     }
     
     /**
     Gets the object at the specified index, if it exists.
     
-    :param: index
-    :returns: Object at index in self
+    - parameter index:
+    - returns: Object at index in self
     */
     func get (index: Int) -> Element? {
         
@@ -101,7 +101,7 @@ internal extension Array {
     /**
     Iterates on each element of the array.
     
-    :param: call Function to call for each element
+    - parameter call: Function to call for each element
     */
     func each (call: (Element) -> ()) {
         
@@ -114,11 +114,11 @@ internal extension Array {
     /**
     Iterates on each element of the array with its index.
     
-    :param: call Function to call for each element
+    - parameter call: Function to call for each element
     */
     func each (call: (Int, Element) -> ()) {
         
-        for (index, item) in enumerate(self) {
+        for (index, item) in self.enumerate() {
             call(index, item)
         }
         
@@ -127,7 +127,7 @@ internal extension Array {
     /**
     Deletes all the items in self that are equal to element.
     
-    :param: element Element to remove
+    - parameter element: Element to remove
     */
     mutating func remove <U: Equatable> (element: U) {
         let anotherSelf = self

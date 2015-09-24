@@ -27,11 +27,11 @@ class BookCell: UITableViewCell {
     }
     
     func configCellWithBook(book: BookObject) {
-        var urlStr = AppConstant.API.URLs.BaseURl + book.book_photoURL!
+        let urlStr = AppConstant.API.URLs.BaseURl + book.book_photoURL!
         self.avatar.sd_setImageWithURL(NSURL(string: urlStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!), placeholderImage: UIImage(named: "default_avatar"))
         self.name.text = book.book_name
         self.author.text = book.book_author
-        println(urlStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        print(urlStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
     }
     
 }

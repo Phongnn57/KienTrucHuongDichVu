@@ -12,11 +12,11 @@ extension String {
     /**
     String length
     */
-    var length: Int { return count(self) }
+    var length: Int { return self.characters.count }
     
     /**
     Parses a string containing a double numerical value into an optional double if the string is a well formed number.
-    :returns: A double parsed from the string or nil if it cannot be parsed.
+    - returns: A double parsed from the string or nil if it cannot be parsed.
     */
     func toDouble() -> Double? {
         
@@ -33,7 +33,7 @@ extension String {
     
     /**
     Parses a string containing a float numerical value into an optional float if the string is a well formed number.
-    :returns: A float parsed from the string or nil if it cannot be parsed.
+    - returns: A float parsed from the string or nil if it cannot be parsed.
     */
     func toFloat() -> Float? {
         
@@ -50,10 +50,10 @@ extension String {
     
     /**
     Parses a string containing a non-negative integer value into an optional UInt if the string is a well formed number.
-    :returns: A UInt parsed from the string or nil if it cannot be parsed.
+    - returns: A UInt parsed from the string or nil if it cannot be parsed.
     */
     func toUInt() -> UInt? {
-        if let val = self.trimmed().toInt() {
+        if let val = Int(self.trimmed()) {
             if val < 0 {
                 return nil
             }
@@ -65,7 +65,7 @@ extension String {
     
     /**
     Parses a string containing a boolean value (true or false) into an optional Bool if the string is a well formed.
-    :returns: A Bool parsed from the string or nil if it cannot be parsed as a boolean.
+    - returns: A Bool parsed from the string or nil if it cannot be parsed as a boolean.
     */
     func toBool() -> Bool? {
         let text = self.trimmed().lowercaseString
@@ -80,11 +80,11 @@ extension String {
     /**
     Parses a string containing a date into an optional NSDate if the string is a well formed.
     The default format is yyyy-MM-dd, but can be overriden.
-    :returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
+    - returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
     */
     func toDate(format : String? = "dd-MM-yyyy") -> NSDate? {
         let text = self.trimmed().lowercaseString
-        var dateFmt = NSDateFormatter()
+        let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
         if let fmt = format {
             dateFmt.dateFormat = fmt
@@ -95,10 +95,10 @@ extension String {
     /**
     Parses a string containing a date and time into an optional NSDate if the string is a well formed.
     The default format is yyyy-MM-dd hh-mm-ss, but can be overriden.
-    :returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
+    - returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
     */
     func toDateTime(format : String? = "yyyy-MM-dd hh-mm-ss") -> NSDate? {
-        return toDate(format: format)
+        return toDate(format)
     }
     
     
@@ -106,7 +106,7 @@ extension String {
     
     /**
     Strips the specified characters from the beginning of self.
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func trimmedLeft (characterSet set: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()) -> String {
         if let range = rangeOfCharacterFromSet(set.invertedSet) {
@@ -116,13 +116,13 @@ extension String {
         return ""
     }
     
-    @availability(*, unavailable, message="use 'trimmedLeft' instead") func ltrimmed (set: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()) -> String {
+    @available(*, unavailable, message="use 'trimmedLeft' instead") func ltrimmed (set: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()) -> String {
         return trimmedLeft(characterSet: set)
     }
     
     /**
     Strips the specified characters from the end of self.
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func trimmedRight (characterSet set: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()) -> String {
         if let range = rangeOfCharacterFromSet(set.invertedSet, options: NSStringCompareOptions.BackwardsSearch) {
@@ -132,13 +132,13 @@ extension String {
         return ""
     }
     
-    @availability(*, unavailable, message="use 'trimmedRight' instead") func rtrimmed (set: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()) -> String {
+    @available(*, unavailable, message="use 'trimmedRight' instead") func rtrimmed (set: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()) -> String {
         return trimmedRight(characterSet: set)
     }
     
     /**
     Strips whitespaces from both the beginning and the end of self.
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func trimmed () -> String {
         return trimmedLeft().trimmedRight()

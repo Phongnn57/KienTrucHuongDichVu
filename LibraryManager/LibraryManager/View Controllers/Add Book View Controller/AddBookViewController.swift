@@ -51,7 +51,7 @@ class AddBookViewController: BaseViewController, UIActionSheetDelegate, UIImageP
 
     func save() {
         MRProgressOverlayView.showOverlayAddedTo(self.view, title: "Đang upload", mode: MRProgressOverlayViewMode.IndeterminateSmall, animated: true)
-        BookAPI.addBook(self.name.text, author: self.author.text, publisher: self.publisher.text, descriptions: self.descriptions.text, image: self.avatar.image, completion: { () -> Void in
+        BookAPI.addBook(self.name.text!, author: self.author.text, publisher: self.publisher.text, descriptions: self.descriptions.text, image: self.avatar.image, completion: { () -> Void in
             MRProgressOverlayView.dismissAllOverlaysForView(self.view, animated: true)
             self.delegate?.didFinishAddBook()
             self.navigationController?.popToRootViewControllerAnimated(true)
@@ -74,7 +74,7 @@ class AddBookViewController: BaseViewController, UIActionSheetDelegate, UIImageP
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.avatar.image = image
         self.dismissViewControllerAnimated(true, completion: nil)

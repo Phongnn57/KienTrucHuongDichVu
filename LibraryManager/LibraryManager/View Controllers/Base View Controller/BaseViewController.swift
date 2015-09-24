@@ -31,7 +31,7 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         self.title = title
-        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
+        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as? [String : AnyObject]
     }
     
     func leftBarButtonItem() -> UIBarButtonItem {
